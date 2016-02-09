@@ -6,6 +6,7 @@ package fr.unice.miage.ntdp.bibliotheque.bean;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -13,12 +14,17 @@ import javax.persistence.EntityManager;
  */
 public abstract class AbstractFacade<T> {
     private Class<T> entityClass;
+    @PersistenceContext(unitName = "BibliothequePU")
+    private EntityManager em;
+
+    protected EntityManager getEntityManager() {
+        return em;
+    }
 
     public AbstractFacade(Class<T> entityClass) {
         this.entityClass = entityClass;
     }
-
-    protected abstract EntityManager getEntityManager();
+    
 
     public void create(T entity) {
         getEntityManager().persist(entity);

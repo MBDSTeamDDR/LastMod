@@ -15,13 +15,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class LivreFacade extends AbstractFacade<Livre> {
-    @PersistenceContext(unitName = "BibliothequePU")
-    private EntityManager em;
-
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
+   
 
     public LivreFacade() {
         super(Livre.class);
